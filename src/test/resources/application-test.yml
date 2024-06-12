@@ -1,0 +1,47 @@
+server.port: 0
+spring:
+  threads.virtual.enabled: true
+  config:
+    activate.on-profile: test
+    name: test-config
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: jokesdb-test
+
+app:
+  batch-size: ${BATCH_SIZE:10}
+  jokes-limit: ${JOKES_LIMIT:100}
+  default-jokes-count: ${DEFAULT_JOKES_COUNT:5}
+  joke-api.url: https://official-joke-api.appspot.com/random_joke
+  resilience:
+    retry:
+      retryAttempts: ${RETRY_ATTEMPTS:3}
+      initialDelayMillis: ${RETRY_INITIAL_DELAY_MILLIS:1000}
+      delayMultiplier: ${RETRY_DELAY_MULTIPLIER:2}
+      maxDelayMillis: ${RETRY_MAX_DELAY_MILLIS:10000}
+      instanceName: jokeApiRetry
+    rate:
+      requestsLimit: ${REQUESTS_LIMIT:100}
+      limitForSeconds: ${RATE_LIMIT_SECONDS:900}
+      resetAfterMillis: ${RESET_RATE_LIMIT_AFTER_MILLIS:0}
+      instanceName: jokeApiRateLimiter
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    enable:
+      all: true
+  endpoint:
+    metrics:
+      enabled: true
+
+logging:
+  level:
+    root: INFO
+    com.razvanb.jokes.service: DEBUG
+    io.github.resilience4j.ratelimiter: DEBUG

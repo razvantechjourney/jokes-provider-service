@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo-crypto-app
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: razvanb
+      MONGO_INITDB_ROOT_PASSWORD: passMongo
+      MONGO_INITDB_DATABASE: cryptodatadb
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express-crypto-app
+    restart: always
+    ports:
+      - 8082:8081
+    environment:
+      ME_CONFIG_MONGODB_AUTH_DATABASE: cryptodatadb
+      ME_CONFIG_MONGODB_ADMINUSERNAME: razvanb
+      ME_CONFIG_MONGODB_ADMINPASSWORD: passMongo
+      ME_CONFIG_MONGODB_URL: mongodb://razvanb:passMongo@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
+    depends_on:
+      - mongo
+
+networks:
+  default:
+    name: razvanb-jokes-network
+    external: true

@@ -1,0 +1,19 @@
+@startuml
+actor User
+participant "Jokes Provider Service" as JPS
+participant "External Joke API" as API
+
+User -> JPS: Request jokes
+JPS -> JPS: Compute batches based on configuration
+note right of JPS: Launch batches of concurrent Get Random Joke requests 
+par
+  JPS -> API
+else
+  JPS -> API
+else
+  JPS -> API
+end
+API --> JPS: Return random joke for each request
+JPS --> User: Return jokes
+
+@enduml

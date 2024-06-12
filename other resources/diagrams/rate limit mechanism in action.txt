@@ -1,0 +1,17 @@
+@startuml
+actor User
+participant "Jokes Provider Service" as JPS
+participant "External Joke API" as API
+
+User -> JPS: Request jokes
+note right of JPS: RATE LIMIT MECHANISM in action
+alt rate limit exceeded
+ JPS -> JPS: Suspend request for a configured amount of time
+else
+  JPS -> JPS: Compute batches based on configuration
+  JPS -> API: Launch batches of concurrent Get Random Joke requests
+  API --> JPS: Return random joke for each request
+  JPS --> User: Return jokes
+end
+
+@enduml

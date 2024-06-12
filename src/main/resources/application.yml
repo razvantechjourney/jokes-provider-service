@@ -1,0 +1,56 @@
+server.port: ${JOKES_SERVICE_PORT:1005}
+spring:
+  application.name: jokes.service
+  threads.virtual.enabled: true
+  data:
+    mongodb:
+      host: ${MONGO_HOST:localhost}
+      port: 27017
+      database: jokesdb
+      authentication-database: admin
+      username: razvanb
+      password: passMongo
+#      username: ENC(RJZwpPvQNXGT9gCqLUZGitsMkMOhYXkgIq8NMakbjdl8LjxnbHNCQvc4ZmW+4mMd)
+#      password: ENC(+0G1nsA5ScJuEpSU7NHffFsy3MR+8cIm0zIYF+DFo/JN2dIb0f/RSHQoh4/4u7to)
+
+app:
+  batch-size: ${BATCH_SIZE:10}
+  jokes-limit: ${JOKES_LIMIT:100}
+  default-jokes-count: ${DEFAULT_JOKES_COUNT:5}
+  joke-api.url: https://official-joke-api.appspot.com/random_joke
+  resilience:
+    retry:
+      retryAttempts: ${RETRY_ATTEMPTS:3}
+      initialDelayMillis: ${RETRY_INITIAL_DELAY_MILLIS:1000}
+      delayMultiplier: ${RETRY_DELAY_MULTIPLIER:2}
+      maxDelayMillis: ${RETRY_MAX_DELAY_MILLIS:10000}
+      instanceName: jokeApiRetry
+    rate:
+      requestsLimit: ${REQUESTS_LIMIT:100}
+      limitForSeconds: ${RATE_LIMIT_SECONDS:900}
+      resetAfterMillis: ${RESET_RATE_LIMIT_AFTER_MILLIS:0}
+      instanceName: jokeApiRateLimiter
+  host: ${JOKES_SERVICE_HOST:localhost}
+  contact:
+    email: ENC(Fhga8v18Ucg+X50QxDTT2Qq+MpqS1cAS7yNsRwh1xMACP8u9AwGKoCTkE3MOmK3jEWJfq1H6l+v4R17vgAWf9g==)
+    name: ENC(JerhYrUcDoC6Sm7SzLmDb09izupja0BM6PXVZ1yZzvmqcBmfdoauizQvfWLIL1E5)
+    url: ENC(5qXhzDRV+IgClR0aY+LRL/DoaPs0KvrMp3IQ4QRktBohgbo1HvplNK2EOG6yxW5NqpctoGjJUvr5fCfC4bA4cHxfI8vj/KBGe4iVPW/AyGwrK/u3sd5QdKF5eGqLln5+)
+
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPTOR_PASSWORD}
+    algorithm: PBEWITHHMACSHA512ANDAES_256
+    iv-generator-classname: org.jasypt.iv.RandomIvGenerator
+    pool-size: 1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    enable:
+      all: true
+  endpoint:
+    metrics:
+      enabled: true

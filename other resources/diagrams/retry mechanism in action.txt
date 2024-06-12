@@ -1,0 +1,31 @@
+@startuml
+actor User
+participant "Jokes Provider Service" as JPS
+participant "External Joke API" as API
+
+User -> JPS: Request jokes
+JPS -> JPS: Compute batches based on configuration
+JPS -> API: Launch batches of concurrent Get Random Joke requests
+
+API --> JPS: Throw Retryable Exception
+
+note right of JPS: RETRY MECHANISM in action
+alt retryable exception
+ JPS -> JPS: Retry the request for a configured number of times
+ alt #green request succeeded
+  API --> JPS: Return random joke for each request
+  JPS --> User: Return jokes
+ else #white
+   alt #red retry exhausted
+    JPS --> User: **"An unexpected error occurred."** - Internal server error
+   else #white
+    JPS --> API: continue retry GET Random Joke
+   end
+ end
+
+
+else #red
+  JPS --> User: **"An unexpected error occurred."** - Internal server error
+end
+
+@enduml
