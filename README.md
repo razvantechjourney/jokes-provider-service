@@ -14,7 +14,7 @@ The Jokes Provider Microservice fetches random jokes from an external API, store
 
 ### Component Diagram
 
-![Component Diagram](https://github.com/razvantechjourney/jokes-service/blob/master/other%20resources/Component%20Diagram.png)
+![Component Diagram](https://github.com/razvantechjourney/jokes-provider-service/blob/master/other%20resources/Component%20Diagram.png)
 
 
 ### Technical Considerations
@@ -34,13 +34,13 @@ Ensure an error-free solution by implementing unit and integration tests to cove
 ## Sequence Diagrams
 
 ### Get Random Jokes in Parallel
-![Get Random Jokes in Parallel](https://github.com/razvantechjourney/jokes-service/blob/master/other%20resources/get%20random%20jokes%20in%20parrallel.png)
+![Get Random Jokes in Parallel](https://github.com/razvantechjourney/jokes-provider-service/blob/master/other%20resources/get%20random%20jokes%20in%20parrallel.png)
 
 ### Rate Limit Mechanism in Action
-![Rate Limit Mechanism in Action](https://github.com/razvantechjourney/jokes-service/blob/master/other%20resources/rate%20limit%20mechanism%20in%20action.png)
+![Rate Limit Mechanism in Action](https://github.com/razvantechjourney/jokes-provider-service/blob/master/other%20resources/rate%20limit%20mechanism%20in%20action.png)
 
 ### Retry Mechanism in Action
-![Retry Mechanism in Action](https://github.com/razvantechjourney/jokes-service/blob/master/other%20resources/retry%20mechanism%20in%20action.png)
+![Retry Mechanism in Action](https://github.com/razvantechjourney/jokes-provider-service/blob/master/other%20resources/retry%20mechanism%20in%20action.png)
 
 
 ## Getting Started
@@ -50,8 +50,8 @@ Follow these steps to set up and run the Jokes Provider Service:
 1. **Set Up Java 22 Language Level and JDK**:
   - Ensure you have Java 22 installed on your system.
   - Set the language level and JDK in your IDE to Java 22. You can refer to the following captures for guidance:
-    ![Set Language Level Capture](https://github.com/razvantechjourney/jokes-service/blob/master/other%20resources/setup%20-%20project%20sdk%20level.PNG)
-    ![Set SDK Level Capture](https://github.com/razvantechjourney/jokes-service/blob/master/other%20resources/setup%20-%20platform%20settings%20sdk%20language%20level.PNG)
+    ![Set Language Level Capture](https://github.com/razvantechjourney/jokes-provider-service/blob/master/other%20resources/setup%20-%20project%20sdk%20level.PNG)
+    ![Set SDK Level Capture](https://github.com/razvantechjourney/jokes-provider-service/blob/master/other%20resources/setup%20-%20platform%20settings%20sdk%20language%20level.PNG)
 
 2. **Set Up Environment Variable for Jasypt**:
     - Ensure the following environment variable is set:
@@ -80,10 +80,10 @@ To access the Swagger API documentation for the running Jokes Provider Service h
 ### Screenshots
 
 #### Collapsed Swagger
-![Swagger Capture 1](https://github.com/razvantechjourney/jokes-service/blob/master/other%20resources/swagger%20collapsed.PNG)
+![Swagger Capture 1](https://github.com/razvantechjourney/jokes-provider-service/blob/master/other%20resources/swagger%20collapsed.PNG)
 
 #### Expanded Swagger
-![Swagger Capture 2](https://github.com/razvantechjourney/jokes-service/blob/master/other%20resources/swagger%20capture.PNG)
+![Swagger Capture 2](https://github.com/razvantechjourney/jokes-provider-service/blob/master/other%20resources/swagger%20capture.PNG)
 
 ## Database
 
@@ -93,10 +93,10 @@ To interact with the MongoDB database used by the Jokes Provider Service, follow
 2. After trying the endpoint (e.g., via Swagger), you can find the 'jokesdb' database containing the requested amount of jokes stored as documents.
 
 ### jokesdb
-![jokesdb](https://github.com/razvantechjourney/jokes-service/blob/master/other%20resources/jokesdb%20mongoexpress%20capture.PNG)
+![jokesdb](https://github.com/razvantechjourney/jokes-provider-service/blob/master/other%20resources/jokesdb%20mongoexpress%20capture.PNG)
 
 ### Joke Document Structure
-![JokeDocument](https://github.com/razvantechjourney/jokes-service/blob/master/other%20resources/jokedocumend%20structure%20in%20db.PNG)
+![JokeDocument](https://github.com/razvantechjourney/jokes-provider-service/blob/master/other%20resources/jokedocumend%20structure%20in%20db.PNG)
 
 3. When running tests, the jokes are stored in the 'jokesdb-test' database. You can access it at: [http://localhost:8082/db/jokesdb-test/jokes](http://localhost:8082/db/jokesdb-test/jokes).
 
@@ -126,7 +126,7 @@ Tests are implemented to ensure the correct functionality of rate limiter and re
 The Jokes Provider Microservice is thoroughly tested to ensure reliability and stability. Unit tests, integration tests, and end-to-end tests cover all critical functionalities and edge cases.
 
 ### Test Coverage
-![Test Coverage](https://github.com/razvantechjourney/jokes-service/blob/master/other%20resources/tests%20coverage.PNG)
+![Test Coverage](https://github.com/razvantechjourney/jokes-provider-service/blob/master/other%20resources/tests%20coverage.PNG)
 
 The test coverage ensures that all components and features of the microservice are rigorously tested, resulting in a robust and dependable application.
 
